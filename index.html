@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Project Scope Calculator — Freelancer Toolkit</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>FreelanceKit — Project Scope Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FDF6EC;
@@ -25,549 +25,220 @@
     --radius: 20px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
 
-  /* HEADER */
+  /* ── HEADER ── */
   header {
     background: var(--forest);
     color: var(--cream);
-    padding: 36px 24px 28px;
+    padding: 24px 24px 22px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-  header::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    background: rgba(232,160,69,0.15);
-  }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -30px; left: -20px;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background: rgba(232,160,69,0.08);
-  }
-  header .tag {
-    display: inline-block;
-    background: var(--amber);
-    color: var(--forest);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 30px;
-    margin-bottom: 14px;
-    position: relative;
-  }
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 6vw, 40px);
-    font-weight: 900;
-    line-height: 1.15;
-    margin-bottom: 10px;
-    position: relative;
-  }
-  header h1 span { color: var(--amber); }
-  header p { font-size: 15px; opacity: 0.8; max-width: 340px; margin: 0 auto; position: relative; }
+  header::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:rgba(232,160,69,0.15); }
+  header::after  { content:''; position:absolute; bottom:-30px; left:-20px; width:120px; height:120px; border-radius:50%; background:rgba(232,160,69,0.08); }
 
-  /* MODE TOGGLE */
-  .mode-wrap {
-    max-width: 540px;
-    margin: 0 auto;
-    padding: 20px 20px 0;
+  .kit-brand {
+    display:flex; align-items:center; justify-content:center;
+    gap:8px; margin-bottom:14px; position:relative;
   }
-  .mode-toggle {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: var(--sand);
-    border-radius: 14px;
-    overflow: hidden;
-    border: 2px solid #e0d4c0;
-  }
+  .kit-logo { width:26px; height:26px; background:var(--amber); border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .kit-logo svg { width:14px; height:14px; fill:var(--forest); }
+  .kit-name { font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; color:rgba(253,246,236,0.7); letter-spacing:0.08em; text-transform:uppercase; }
+  .kit-divider { width:1px; height:13px; background:rgba(253,246,236,0.25); }
+  .kit-tool { font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:500; color:rgba(253,246,236,0.55); }
+
+  header h1 { font-family:'Fraunces',serif; font-size:clamp(26px,6vw,40px); font-weight:900; line-height:1.15; margin-bottom:10px; position:relative; }
+  header h1 span { color:var(--amber); }
+  header p { font-size:14px; opacity:0.75; max-width:340px; margin:0 auto; position:relative; font-weight:400; }
+
+  /* ── MODE TOGGLE ── */
+  .mode-wrap { max-width:540px; margin:0 auto; padding:20px 20px 0; }
+  .mode-toggle { display:grid; grid-template-columns:1fr 1fr; background:var(--sand); border-radius:14px; overflow:hidden; border:2px solid #e0d4c0; }
   .mode-btn {
-    padding: 14px 10px;
-    border: none;
-    background: transparent;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-light);
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
+    padding:14px 10px; border:none; background:transparent;
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; font-weight:600;
+    color:var(--text-light); cursor:pointer; transition:all 0.2s;
+    display:flex; flex-direction:column; align-items:center; gap:3px;
   }
-  .mode-btn .mode-icon { font-size: 20px; }
-  .mode-btn .mode-sub {
-    font-size: 11px;
-    font-weight: 400;
-    opacity: 0.7;
-  }
-  .mode-btn.active {
-    background: var(--warm-white);
-    color: var(--forest);
-    border-bottom: 3px solid var(--amber);
-  }
-  .mode-btn:first-child { border-right: 1px solid #e0d4c0; }
+  .mode-btn .mode-icon { font-size:20px; }
+  .mode-btn .mode-sub { font-size:11px; font-weight:400; opacity:0.7; }
+  .mode-btn.active { background:var(--warm-white); color:var(--forest); border-bottom:3px solid var(--amber); }
+  .mode-btn:first-child { border-right:1px solid #e0d4c0; }
 
-  /* LAYOUT */
-  .wrap { max-width: 540px; margin: 0 auto; padding: 0 20px; }
+  /* ── LAYOUT ── */
+  .wrap { max-width:540px; margin:0 auto; padding:0 20px; }
+  .card { background:var(--warm-white); border-radius:var(--radius); padding:22px 20px; margin-top:16px; box-shadow:0 2px 12px var(--shadow); border:1px solid rgba(232,160,69,0.15); }
+  .card-title { font-family:'Fraunces',serif; font-size:17px; font-weight:700; color:var(--forest); margin-bottom:4px; }
+  .card-subtitle { font-size:13px; color:var(--text-light); margin-bottom:18px; }
 
-  .card {
-    background: var(--warm-white);
-    border-radius: var(--radius);
-    padding: 22px 20px;
-    margin-top: 16px;
-    box-shadow: 0 2px 12px var(--shadow);
-    border: 1px solid rgba(232,160,69,0.15);
-  }
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--forest);
-    margin-bottom: 4px;
-  }
-  .card-subtitle {
-    font-size: 13px;
-    color: var(--text-light);
-    margin-bottom: 18px;
-  }
-
-  .field { margin-bottom: 16px; }
-  .field:last-child { margin-bottom: 0; }
-  label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 7px;
-  }
+  .field { margin-bottom:16px; }
+  .field:last-child { margin-bottom:0; }
+  label { display:block; font-size:13px; font-weight:600; color:var(--text); margin-bottom:7px; font-family:'Plus Jakarta Sans',sans-serif; }
   input[type="text"], input[type="number"], select {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #e5ddd0;
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-    background: #fff;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
+    width:100%; padding:14px; border:2px solid #e5ddd0; border-radius:12px;
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:500;
+    color:var(--text); background:#fff; transition:border-color 0.2s;
+    -webkit-appearance:none; appearance:none; outline:none;
   }
-  input:focus, select:focus { border-color: var(--amber); }
-  select { cursor: pointer; }
+  input:focus, select:focus { border-color:var(--amber); }
+  select { cursor:pointer; }
 
-  /* TASK ROWS */
-  #tasksContainer { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
-  .task-col-labels {
-    display: grid;
-    grid-template-columns: 1fr 80px 44px;
-    gap: 8px;
-    padding: 0 4px 6px;
-  }
-  .task-col-labels span {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .task-col-labels span:nth-child(2) { text-align: center; }
+  /* ── TASK ROWS ── */
+  #tasksContainer { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
+  .task-col-labels { display:grid; grid-template-columns:1fr 80px 44px; gap:8px; padding:0 4px 6px; }
+  .task-col-labels span { font-size:11px; font-weight:600; color:var(--text-light); text-transform:uppercase; letter-spacing:0.5px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .task-col-labels span:nth-child(2) { text-align:center; }
 
   .task-row {
-    display: grid;
-    grid-template-columns: 1fr 80px 44px;
-    gap: 8px;
-    align-items: center;
-    background: var(--sand);
-    border: 1.5px solid #e0d4c0;
-    border-radius: 12px;
-    padding: 10px 10px 10px 12px;
-    animation: popIn 0.2s ease;
+    display:grid; grid-template-columns:1fr 80px 44px; gap:8px; align-items:center;
+    background:var(--sand); border:1.5px solid #e0d4c0; border-radius:12px;
+    padding:10px 10px 10px 12px; animation:popIn 0.2s ease;
   }
-  @keyframes popIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
-  .task-row input { margin: 0; background: #fff; padding: 12px; font-size: 16px; border-radius: 8px; }
-  .task-row input[type="number"] { text-align: center; }
+  @keyframes popIn { from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);} }
+  .task-row input { margin:0; background:#fff; padding:12px; font-size:16px; border-radius:8px; }
+  .task-row input[type="number"] { text-align:center; }
 
   .remove-btn {
-    background: var(--red-light);
-    border: none;
-    border-radius: 10px;
-    color: var(--red);
-    font-size: 16px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: background 0.15s;
-    flex-shrink: 0;
+    background:var(--red-light); border:none; border-radius:10px;
+    color:var(--red); font-size:16px; width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:background 0.15s; flex-shrink:0;
   }
-  .remove-btn:hover { background: #f9c9c5; }
+  .remove-btn:hover { background:#f9c9c5; }
 
   .add-task-btn {
-    width: 100%;
-    padding: 15px;
-    border: 2px dashed #cfc3b0;
-    border-radius: 12px;
-    background: transparent;
-    color: var(--text-light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    min-height: 52px;
+    width:100%; padding:15px; border:2px dashed #cfc3b0; border-radius:12px;
+    background:transparent; color:var(--text-light);
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:15px; font-weight:600;
+    cursor:pointer; transition:all 0.2s;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    min-height:52px;
   }
-  .add-task-btn:hover {
-    border-color: var(--amber);
-    color: var(--amber-dark);
-    background: var(--amber-light);
-  }
+  .add-task-btn:hover { border-color:var(--amber); color:var(--amber-dark); background:var(--amber-light); }
 
-  .adj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .adj-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
-  /* DELIVERABLE ROWS */
-  #deliverablesContainer { margin-bottom: 14px; }
+  /* ── DELIVERABLE ROWS ── */
+  #deliverablesContainer { margin-bottom:14px; }
   .deliverable-row {
-    display: grid;
-    grid-template-columns: 1fr 44px;
-    gap: 8px;
-    align-items: center;
-    background: var(--sand);
-    border: 1.5px solid #e0d4c0;
-    border-radius: 12px;
-    padding: 10px 10px 10px 12px;
-    margin-bottom: 10px;
-    animation: popIn 0.2s ease;
+    display:grid; grid-template-columns:1fr 44px; gap:8px; align-items:center;
+    background:var(--sand); border:1.5px solid #e0d4c0; border-radius:12px;
+    padding:10px 10px 10px 12px; margin-bottom:10px; animation:popIn 0.2s ease;
   }
-  .deliverable-row input { margin: 0; background: #fff; padding: 12px; font-size: 16px; border-radius: 8px; }
+  .deliverable-row input { margin:0; background:#fff; padding:12px; font-size:16px; border-radius:8px; }
 
-  /* TOTAL BOX */
+  /* ── TOTAL BOX ── */
   .total-box {
-    background: var(--forest);
-    color: var(--cream);
-    border-radius: var(--radius);
-    padding: 26px 22px 22px;
-    margin-top: 16px;
-    box-shadow: 0 4px 20px rgba(27,45,79,0.25);
-    position: relative;
-    overflow: hidden;
+    background:var(--forest); color:var(--cream);
+    border-radius:var(--radius); padding:26px 22px 22px; margin-top:16px;
+    box-shadow:0 4px 20px rgba(27,45,79,0.25);
+    position:relative; overflow:hidden;
   }
-  .total-box::before {
-    content: '';
-    position: absolute;
-    top: -30px; right: -30px;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background: rgba(232,160,69,0.12);
-  }
-  .total-for-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.5;
-    margin-bottom: 4px;
-    position: relative;
-  }
-  .total-project-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--amber);
-    position: relative;
-  }
-  .total-breakdown {
-    background: rgba(255,255,255,0.07);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 18px;
-    position: relative;
-  }
-  .breakdown-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 14px;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .breakdown-row:last-child { border-bottom: none; }
-  .breakdown-row .br-name { opacity: 0.65; flex: 1; margin-right: 8px; }
-  .breakdown-row .br-val { font-weight: 600; white-space: nowrap; }
-  .total-final {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-top: 1px solid rgba(255,255,255,0.14);
-    padding-top: 16px;
-    position: relative;
-  }
-  .total-final-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--cream);
-    opacity: 0.85;
-  }
-  #totalPrice {
-    font-family: 'Playfair Display', serif;
-    font-size: 52px;
-    font-weight: 900;
-    color: var(--cream);
-    line-height: 1;
-  }
+  .total-box::before { content:''; position:absolute; top:-30px; right:-30px; width:120px; height:120px; border-radius:50%; background:rgba(232,160,69,0.12); }
+  .total-for-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-bottom:4px; position:relative; font-family:'Plus Jakarta Sans',sans-serif; }
+  .total-project-name { font-family:'Fraunces',serif; font-size:18px; font-weight:700; margin-bottom:20px; color:var(--amber); position:relative; }
+  .total-breakdown { background:rgba(255,255,255,0.07); border-radius:12px; overflow:hidden; margin-bottom:18px; position:relative; }
+  .breakdown-row { display:flex; justify-content:space-between; padding:10px 14px; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.06); font-family:'Plus Jakarta Sans',sans-serif; }
+  .breakdown-row:last-child { border-bottom:none; }
+  .breakdown-row .br-name { opacity:0.65; flex:1; margin-right:8px; }
+  .breakdown-row .br-val { font-weight:600; white-space:nowrap; }
+  .total-final { display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid rgba(255,255,255,0.14); padding-top:16px; position:relative; }
+  .total-final-label { font-family:'Fraunces',serif; font-size:16px; font-weight:700; color:var(--cream); opacity:0.85; }
+  #totalPrice { font-family:'Fraunces',serif; font-size:52px; font-weight:900; color:var(--cream); line-height:1; }
 
-  /* FEE RANGE */
-  .fee-range {
-    background: rgba(232,160,69,0.15);
-    border: 1px solid rgba(232,160,69,0.35);
-    border-radius: 12px;
-    padding: 12px 14px;
-    margin-top: 14px;
-    display: none;
-    position: relative;
-  }
-  .fee-range-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    opacity: 0.55;
-    margin-bottom: 4px;
-  }
-  .fee-range-values {
-    font-family: 'Playfair Display', serif;
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--amber);
-  }  .fee-range-note {
-    font-size: 11px;
-    opacity: 0.45;
-    margin-top: 3px;
-  }
+  /* ── FEE RANGE ── */
+  .fee-range { background:rgba(232,160,69,0.15); border:1px solid rgba(232,160,69,0.35); border-radius:12px; padding:12px 14px; margin-top:14px; display:none; position:relative; }
+  .fee-range-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; opacity:0.55; margin-bottom:4px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .fee-range-values { font-family:'Fraunces',serif; font-size:19px; font-weight:700; color:var(--amber); }
+  .fee-range-note { font-size:11px; opacity:0.45; margin-top:3px; font-family:'Plus Jakarta Sans',sans-serif; }
 
-  /* BUTTONS */
-  .btn-row { display: flex; gap: 10px; margin-top: 14px; }
+  /* ── BUTTONS ── */
+  .btn-row { display:flex; gap:10px; margin-top:14px; }
   .btn-primary {
-    flex: 1;
-    padding: 17px;
-    border: none;
-    border-radius: 14px;
-    background: var(--amber);
-    color: var(--forest);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    min-height: 56px;
-    transition: background 0.15s, transform 0.12s, color 0.15s;
+    flex:1; padding:17px; border:none; border-radius:50px;
+    background:var(--amber); color:var(--forest);
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:700;
+    cursor:pointer; min-height:56px; transition:background 0.15s, transform 0.12s, color 0.15s;
   }
-  .btn-primary:hover { background: var(--amber-dark); color: #fff; transform: translateY(-1px); }
-  .btn-primary:active { transform: scale(0.97); }
+  .btn-primary:hover { background:var(--amber-dark); color:#fff; transform:translateY(-1px); }
+  .btn-primary:active { transform:scale(0.97); }
   .btn-secondary {
-    padding: 17px 20px;
-    border: 2px solid #e0d4c0;
-    border-radius: 14px;
-    background: transparent;
-    color: var(--text-light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    min-height: 56px;
-    transition: border-color 0.15s, color 0.15s, transform 0.12s;
+    padding:17px 20px; border:2px solid #e0d4c0; border-radius:50px;
+    background:transparent; color:var(--text-light);
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:700;
+    cursor:pointer; min-height:56px; transition:border-color 0.15s, color 0.15s, transform 0.12s;
   }
-  .btn-secondary:hover { border-color: var(--forest); color: var(--forest); }
-  .btn-secondary:active { transform: scale(0.97); }
+  .btn-secondary:hover { border-color:var(--forest); color:var(--forest); }
+  .btn-secondary:active { transform:scale(0.97); }
 
-  /* MOBILE — stack adj grid on small screens, ensure no zoom */
-  @media (max-width: 400px) {
-    .adj-grid { grid-template-columns: 1fr; }
-    .mode-btn { font-size: 12px; }
-    .mode-btn .mode-sub { display: none; }
-    header h1 { font-size: 24px; }
-    #totalPrice { font-size: 42px; }
-    .saved-amount { font-size: 18px; }
-  }
-
-  /* SAVED QUOTES */
-  /* SAVED QUOTES */
-  #savedSection { display: none; }
+  /* ── SAVED QUOTES ── */
+  #savedSection { display:none; }
   .saved-item {
-    background: var(--warm-white);
-    border: 1.5px solid #e0d4c0;
-    border-radius: 14px;
-    padding: 16px 16px 14px;
-    margin-bottom: 10px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    animation: popIn 0.25s ease both;
+    background:var(--warm-white); border:1.5px solid #e0d4c0; border-radius:14px;
+    padding:16px 16px 14px; margin-bottom:10px;
+    transition:border-color 0.2s, box-shadow 0.2s; animation:popIn 0.25s ease both;
   }
-  .saved-item:last-child { margin-bottom: 0; }
-  .saved-item:hover {
-    border-color: var(--amber);
-    box-shadow: 0 2px 12px rgba(232,160,69,0.15);
-  }
-  .saved-item-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-  }
-  .saved-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--forest);
-    margin-bottom: 3px;
-    line-height: 1.3;
-  }
-  .saved-mode-tag {
-    display: inline-block;
-    background: var(--amber-light);
-    color: var(--amber-dark);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 20px;
-  }
-  .saved-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--forest);
-    line-height: 1;
-    white-space: nowrap;
-    margin-left: 12px;
-  }
-  .saved-item-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid #ede5d8;
-    padding-top: 10px;
-  }
-  .saved-date {
-    font-size: 12px;
-    color: var(--text-light);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .saved-actions { display: flex; gap: 8px; }
-  .saved-copy-btn {
-    background: var(--amber-light);
-    border: none;
-    border-radius: 8px;
-    color: var(--amber-dark);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .saved-copy-btn:hover { background: #fde0b0; }
-  .del-btn {
-    background: none;
-    border: none;
-    color: #ccc;
-    font-size: 15px;
-    cursor: pointer;
-    padding: 4px 6px;
-    border-radius: 6px;
-    transition: color 0.15s, background 0.15s;
-  }
-  .del-btn:hover { color: var(--red); background: var(--red-light); }
+  .saved-item:last-child { margin-bottom:0; }
+  .saved-item:hover { border-color:var(--amber); box-shadow:0 2px 12px rgba(232,160,69,0.15); }
+  .saved-item-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .saved-name { font-family:'Fraunces',serif; font-size:15px; font-weight:700; color:var(--forest); margin-bottom:3px; line-height:1.3; }
+  .saved-mode-tag { display:inline-block; background:var(--amber-light); color:var(--amber-dark); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:20px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .saved-amount { font-family:'Fraunces',serif; font-size:22px; font-weight:900; color:var(--forest); line-height:1; white-space:nowrap; margin-left:12px; }
+  .saved-item-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid #ede5d8; padding-top:10px; }
+  .saved-date { font-size:12px; color:var(--text-light); display:flex; align-items:center; gap:5px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .saved-actions { display:flex; gap:8px; }
+  .saved-copy-btn { background:var(--amber-light); border:none; border-radius:8px; color:var(--amber-dark); font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:600; padding:5px 10px; cursor:pointer; transition:background 0.15s; }
+  .saved-copy-btn:hover { background:#fde0b0; }
+  .del-btn { background:none; border:none; color:#ccc; font-size:15px; cursor:pointer; padding:4px 6px; border-radius:6px; transition:color 0.15s, background 0.15s; }
+  .del-btn:hover { color:var(--red); background:var(--red-light); }
 
-  /* TIP */
-  .tip {
-    background: var(--green-light);
-    border: 1.5px solid #b2dfc6;
-    border-radius: 12px;
-    padding: 13px 15px;
-    font-size: 13px;
-    color: var(--green);
-    line-height: 1.55;
-    margin-top: 14px;
-  }
+  /* ── TIP ── */
+  .tip { background:var(--green-light); border:1.5px solid #b2dfc6; border-radius:12px; padding:13px 15px; font-size:13px; color:var(--green); line-height:1.55; margin-top:14px; font-family:'Plus Jakarta Sans',sans-serif; }
 
-  /* TOAST */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(60px);
-    background: var(--forest);
-    color: var(--cream);
-    padding: 12px 22px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
-    transition: transform 0.28s ease;
-    z-index: 999;
-    white-space: nowrap;
-    pointer-events: none;
-    box-shadow: 0 4px 16px rgba(27,45,79,0.3);
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+  /* ── TOAST ── */
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(60px); background:var(--forest); color:var(--cream); padding:12px 22px; border-radius:30px; font-size:13px; font-weight:600; transition:transform 0.28s ease; z-index:999; white-space:nowrap; pointer-events:none; box-shadow:0 4px 16px rgba(27,45,79,0.3); font-family:'Plus Jakarta Sans',sans-serif; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
 
-  /* MICRO-INTERACTIONS */
-  .section-fade { animation: sectionFade 0.35s ease both; }
-  @keyframes sectionFade {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* ── MICRO-INTERACTIONS ── */
+  .section-fade { animation:sectionFade 0.35s ease both; }
+  @keyframes sectionFade { from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);} }
+  @keyframes totalPulse { 0%{box-shadow:0 4px 20px rgba(45,74,62,0.25);}40%{box-shadow:0 4px 36px rgba(232,160,69,0.5);}100%{box-shadow:0 4px 20px rgba(45,74,62,0.25);} }
+  .total-box.pulse { animation:totalPulse 0.55s ease; }
+  @keyframes priceFlash { 0%{opacity:1;}25%{opacity:0.25;}100%{opacity:1;} }
+  #totalPrice.flash { animation:priceFlash 0.35s ease; }
+  @keyframes rowSlide { from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);} }
+  .breakdown-row { animation:rowSlide 0.2s ease both; }
+  input[type="text"]:focus, input[type="number"]:focus { box-shadow:0 0 0 3px rgba(232,160,69,0.18); transform:translateY(-1px); transition:border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+  .btn-primary:active, .btn-secondary:active { transform:scale(0.97); }
+  .add-task-btn:active { transform:scale(0.98); }
+  .remove-btn { transition:background 0.15s, transform 0.1s; }
+  .remove-btn:active { transform:scale(0.88); }
+  .mode-btn { transition:all 0.22s ease; }
+  .mode-btn:active { transform:scale(0.96); }
+
+  @media (max-width:400px) {
+    .adj-grid { grid-template-columns:1fr; }
+    .mode-btn { font-size:12px; }
+    .mode-btn .mode-sub { display:none; }
+    header h1 { font-size:24px; }
+    #totalPrice { font-size:42px; }
+    .saved-amount { font-size:18px; }
   }
-  @keyframes totalPulse {
-    0%   { box-shadow: 0 4px 20px rgba(45,74,62,0.25); }
-    40%  { box-shadow: 0 4px 36px rgba(232,160,69,0.5); }
-    100% { box-shadow: 0 4px 20px rgba(45,74,62,0.25); }
-  }
-  .total-box.pulse { animation: totalPulse 0.55s ease; }
-  @keyframes priceFlash {
-    0%   { opacity: 1; }
-    25%  { opacity: 0.25; }
-    100% { opacity: 1; }
-  }
-  #totalPrice.flash { animation: priceFlash 0.35s ease; }
-  @keyframes rowSlide {
-    from { opacity: 0; transform: translateX(-8px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .breakdown-row { animation: rowSlide 0.2s ease both; }
-  input[type="text"]:focus, input[type="number"]:focus {
-    box-shadow: 0 0 0 3px rgba(232,160,69,0.18);
-    transform: translateY(-1px);
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
-  }
-  .btn-primary  { transition: background 0.15s, transform 0.12s, color 0.15s; }
-  .btn-secondary { transition: border-color 0.15s, color 0.15s, transform 0.12s; }
-  .btn-primary:active, .btn-secondary:active { transform: scale(0.97); }
-  .add-task-btn:active { transform: scale(0.98); }
-  .remove-btn { transition: background 0.15s, transform 0.1s; }
-  .remove-btn:active { transform: scale(0.88); }
-  .mode-btn { transition: all 0.22s ease; }
-  .mode-btn:active { transform: scale(0.96); }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="tag">Freelancer Tool</div>
+  <div class="kit-brand">
+    <div class="kit-logo">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M2 3h12v2H2V3zm0 4h8v2H2V7zm0 4h10v2H2v-2z"/></svg>
+    </div>
+    <span class="kit-name">FreelanceKit</span>
+    <div class="kit-divider"></div>
+    <span class="kit-tool">Scope Calculator</span>
+  </div>
   <h1>Project Scope<br><span>Calculator</span></h1>
   <p>Break down tasks &middot; Estimate hours &middot; Price your work</p>
 </header>
@@ -576,12 +247,12 @@
 <div class="mode-wrap">
   <div class="mode-toggle">
     <button class="mode-btn active" id="btnHourly" onclick="setMode('hourly')">
-      <span class="mode-icon">&#9200;</span>
+      <span class="mode-icon">⏱</span>
       Hourly Rate
       <span class="mode-sub">Calculate by hours worked</span>
     </button>
     <button class="mode-btn" id="btnFlat" onclick="setMode('flat')">
-      <span class="mode-icon">&#128176;</span>
+      <span class="mode-icon">💰</span>
       Flat Fee
       <span class="mode-sub">Quote a fixed project price</span>
     </button>
@@ -760,30 +431,22 @@ var currentMode = 'hourly';
 var countUpTimer = null;
 var displayedValue = 0;
 
-/* Smoothly counts the price from current displayed value to target */
 function animateTotal(target) {
   if (countUpTimer) clearInterval(countUpTimer);
   var start = displayedValue;
   var diff  = target - start;
   if (diff === 0) return;
-  var duration = 380; // ms
-  var steps    = 24;
-  var stepTime  = duration / steps;
-  var step = 0;
-  /* Flash the number as it starts changing */
+  var duration = 380, steps = 24, stepTime = duration / steps, step = 0;
   var priceEl = document.getElementById('totalPrice');
   priceEl.classList.remove('flash');
-  void priceEl.offsetWidth; // force reflow to restart animation
+  void priceEl.offsetWidth;
   priceEl.classList.add('flash');
-  /* Pulse the box */
   var box = document.querySelector('.total-box');
   box.classList.remove('pulse');
   void box.offsetWidth;
   box.classList.add('pulse');
-
   countUpTimer = setInterval(function() {
     step++;
-    /* Ease-out curve: starts fast, slows at the end */
     var progress = 1 - Math.pow(1 - step / steps, 3);
     displayedValue = Math.round(start + diff * progress);
     priceEl.textContent = '$' + displayedValue.toLocaleString();
@@ -799,27 +462,17 @@ function setMode(mode) {
   currentMode = mode;
   document.getElementById('btnHourly').classList.toggle('active', mode === 'hourly');
   document.getElementById('btnFlat').classList.toggle('active', mode === 'flat');
-
   var hourlyEl = document.getElementById('hourlySection');
   var flatEl   = document.getElementById('flatSection');
-
   if (mode === 'hourly') {
-    flatEl.style.display   = 'none';
-    hourlyEl.style.display = 'block';
-    hourlyEl.classList.remove('section-fade');
-    void hourlyEl.offsetWidth;
-    hourlyEl.classList.add('section-fade');
+    flatEl.style.display = 'none'; hourlyEl.style.display = 'block';
+    hourlyEl.classList.remove('section-fade'); void hourlyEl.offsetWidth; hourlyEl.classList.add('section-fade');
   } else {
-    hourlyEl.style.display = 'none';
-    flatEl.style.display   = 'block';
-    flatEl.classList.remove('section-fade');
-    void flatEl.offsetWidth;
-    flatEl.classList.add('section-fade');
+    hourlyEl.style.display = 'none'; flatEl.style.display = 'block';
+    flatEl.classList.remove('section-fade'); void flatEl.offsetWidth; flatEl.classList.add('section-fade');
   }
-
   document.getElementById('rateField').style.display      = mode === 'hourly' ? 'block' : 'none';
   document.getElementById('flatPriceField').style.display = mode === 'flat'   ? 'block' : 'none';
-
   if (mode === 'flat') {
     document.getElementById('tipBox').innerHTML = '<strong>Pro tip:</strong> Flat fee pricing removes the clock-watching stress for clients — they know exactly what they\'re paying. Make sure your scope is crystal clear to avoid scope creep. Always define what is NOT included.';
     document.getElementById('totalLabel').textContent = 'Flat Fee Total';
@@ -837,8 +490,7 @@ function addTask(name, hours) {
   var container = document.getElementById('tasksContainer');
   var id = taskID++;
   var row = document.createElement('div');
-  row.className = 'task-row';
-  row.setAttribute('data-id', id);
+  row.className = 'task-row'; row.setAttribute('data-id', id);
   var n = document.createElement('input');
   n.type = 'text'; n.placeholder = 'e.g. Homepage design'; n.value = name;
   n.setAttribute('oninput', 'updateQuote()');
@@ -864,8 +516,7 @@ function addDeliverable(text) {
   var container = document.getElementById('deliverablesContainer');
   var id = deliverableID++;
   var row = document.createElement('div');
-  row.className = 'deliverable-row';
-  row.setAttribute('data-did', id);
+  row.className = 'deliverable-row'; row.setAttribute('data-did', id);
   var inp = document.createElement('input');
   inp.type = 'text'; inp.placeholder = 'e.g. 5-page responsive website'; inp.value = text;
   inp.setAttribute('oninput', 'updateQuote()');
@@ -895,18 +546,13 @@ function calcHourly() {
   var rush     = parseFloat(document.getElementById('rush').value) || 1;
   var buffer   = parseFloat(document.getElementById('buffer').value) || 1;
   var discount = parseFloat(document.getElementById('discount').value) || 0;
-
   var taskHours = 0;
   var rows = document.querySelectorAll('.task-row');
-  for (var i = 0; i < rows.length; i++) {
-    taskHours += parseFloat(rows[i].children[1].value) || 0;
-  }
-
-  var base        = (taskHours + revHours) * rate;
+  for (var i = 0; i < rows.length; i++) taskHours += parseFloat(rows[i].children[1].value) || 0;
+  var base = (taskHours + revHours) * rate;
   var afterBuffer = base * buffer;
   var afterRush   = afterBuffer * rush;
   var final       = afterRush + discount;
-
   var html = '';
   if (taskHours > 0) html += brow('Task hours (' + taskHours + 'h x $' + rate + '/hr)', fmt(taskHours * rate));
   if (revHours > 0)  html += brow('Revision rounds (+' + revHours + 'h)', fmt(revHours * rate));
@@ -914,22 +560,14 @@ function calcHourly() {
   if (rush > 1)      html += brow('Rush fee (x' + rush + ')', '+' + fmt(afterRush - afterBuffer));
   if (discount !== 0) html += brow('Adjustment', (discount >= 0 ? '+$' : '-$') + Math.abs(discount).toLocaleString());
   if (!html) html = brow('Add tasks and your hourly rate above', '&#8212;');
-
   document.getElementById('breakdown').innerHTML = html;
-
   var hasTotal = rate > 0 && final > 0;
-  var targetVal = hasTotal ? Math.max(0, Math.round(final)) : 0;
-  animateTotal(targetVal);
-
+  animateTotal(hasTotal ? Math.max(0, Math.round(final)) : 0);
   var rangeEl = document.getElementById('feeRange');
   if (hasTotal) {
-    var low  = Math.round(final * 0.9);
-    var high = Math.round(final * 1.2);
-    document.getElementById('feeRangeValues').textContent = '$' + low.toLocaleString() + ' \u2013 $' + high.toLocaleString();
+    document.getElementById('feeRangeValues').textContent = '$' + Math.round(final * 0.9).toLocaleString() + ' \u2013 $' + Math.round(final * 1.2).toLocaleString();
     rangeEl.style.display = 'block';
-  } else {
-    rangeEl.style.display = 'none';
-  }
+  } else { rangeEl.style.display = 'none'; }
 }
 
 function calcFlat() {
@@ -937,13 +575,9 @@ function calcFlat() {
   var depPct   = parseFloat(document.getElementById('deposit').value) || 0;
   var revs     = document.getElementById('flatRevisions').value;
   var timeline = document.getElementById('timeline').value;
-
   var drows = document.querySelectorAll('.deliverable-row');
   var dCount = 0;
-  for (var i = 0; i < drows.length; i++) {
-    if (drows[i].children[0].value.trim()) dCount++;
-  }
-
+  for (var i = 0; i < drows.length; i++) if (drows[i].children[0].value.trim()) dCount++;
   var html = '';
   if (price > 0) {
     html += brow('Project flat fee', fmt(price));
@@ -957,7 +591,6 @@ function calcFlat() {
     if (dCount > 0) html += brow(dCount + ' deliverable' + (dCount !== 1 ? 's' : '') + ' defined', '&#10003;');
   }
   if (!html) html = brow('Enter your flat fee price above', '&#8212;');
-
   document.getElementById('breakdown').innerHTML = html;
   animateTotal(price > 0 ? Math.round(price) : 0);
 }
@@ -972,25 +605,17 @@ function copyQuote() {
   var total = document.getElementById('totalPrice').textContent;
   var date  = new Date().toLocaleDateString();
   var text  = 'PROJECT SCOPE QUOTE\n--------------------------------\nProject: ' + name + '\nDate:    ' + date + '\n\n';
-
   if (currentMode === 'hourly') {
     var rate = document.getElementById('hourlyRate').value || '0';
     text += 'PRICING: Hourly @ $' + rate + '/hr\n\nTASK BREAKDOWN\n';
     var rows = document.querySelectorAll('.task-row');
-    for (var i = 0; i < rows.length; i++) {
-      text += '  - ' + (rows[i].children[0].value || 'Task') + ' (' + (rows[i].children[1].value || '0') + ' hrs)\n';
-    }
+    for (var i = 0; i < rows.length; i++) text += '  - ' + (rows[i].children[0].value || 'Task') + ' (' + (rows[i].children[1].value || '0') + ' hrs)\n';
     var rangeEl = document.getElementById('feeRange');
-    if (rangeEl.style.display !== 'none') {
-      text += '\nESTIMATED RANGE: ' + document.getElementById('feeRangeValues').textContent + '\n';
-    }
+    if (rangeEl.style.display !== 'none') text += '\nESTIMATED RANGE: ' + document.getElementById('feeRangeValues').textContent + '\n';
   } else {
     text += 'PRICING: Flat Fee\n\nDELIVERABLES INCLUDED\n';
     var drows = document.querySelectorAll('.deliverable-row');
-    for (var j = 0; j < drows.length; j++) {
-      var d = drows[j].children[0].value;
-      if (d.trim()) text += '  - ' + d + '\n';
-    }
+    for (var j = 0; j < drows.length; j++) { var d = drows[j].children[0].value; if (d.trim()) text += '  - ' + d + '\n'; }
     var revs = document.getElementById('flatRevisions').value;
     var tl   = document.getElementById('timeline').value;
     var dep  = parseFloat(document.getElementById('deposit').value) || 0;
@@ -998,8 +623,7 @@ function copyQuote() {
     if (tl)  text += 'Timeline:  ' + tl + '\n';
     if (dep) text += 'Deposit:   ' + Math.round(dep*100) + '% due on signing\n';
   }
-
-  text += '\nPROJECT TOTAL: ' + total + '\n\nGenerated with Project Scope Calculator — Freelancer Toolkit';
+  text += '\nPROJECT TOTAL: ' + total + '\n\nGenerated with FreelanceKit — Project Scope Calculator';
   navigator.clipboard.writeText(text)
     .then(function() { showToast('Quote copied to clipboard!'); })
     .catch(function() { showToast('Could not copy — try again'); });
@@ -1008,16 +632,13 @@ function copyQuote() {
 function saveQuote() {
   var name  = document.getElementById('projectName').value || 'Untitled Project';
   var total = document.getElementById('totalPrice').textContent;
-  var meta  = currentMode === 'hourly'
-    ? 'Hourly @ $' + (document.getElementById('hourlyRate').value || '0') + '/hr'
-    : 'Flat fee';
+  var meta  = currentMode === 'hourly' ? 'Hourly @ $' + (document.getElementById('hourlyRate').value || '0') + '/hr' : 'Flat fee';
   if (total === '$0') { showToast('Enter your pricing details first!'); return; }
   var saved = JSON.parse(localStorage.getItem('psc_v3') || '[]');
   saved.unshift({ id: Date.now(), name: name, total: total, meta: meta, date: new Date().toLocaleDateString() });
   if (saved.length > 10) saved.pop();
   localStorage.setItem('psc_v3', JSON.stringify(saved));
-  loadQuotes();
-  showToast('Quote saved!');
+  loadQuotes(); showToast('Quote saved!');
 }
 
 function loadQuotes() {
@@ -1031,31 +652,23 @@ function loadQuotes() {
     var q = saved[i];
     var modeTag = q.meta.indexOf('Hourly') !== -1 ? 'Hourly' : 'Flat Fee';
     html += '<div class="saved-item">';
-    /* Top row: name + amount */
     html += '<div class="saved-item-top">';
     html += '<div><div class="saved-name">' + q.name + '</div><span class="saved-mode-tag">' + modeTag + '</span></div>';
     html += '<div class="saved-amount">' + q.total + '</div>';
     html += '</div>';
-    /* Bottom row: date + actions */
     html += '<div class="saved-item-bottom">';
     html += '<div class="saved-date">\uD83D\uDCC5\u00A0' + q.date + '\u00A0\u00B7\u00A0' + q.meta + '</div>';
     html += '<div class="saved-actions">';
     html += '<button class="saved-copy-btn" onclick="copySaved(\'' + q.name + '\',\'' + q.total + '\',\'' + q.meta + '\',\'' + q.date + '\')">Copy</button>';
     html += '<button class="del-btn" onclick="deleteQuote(' + q.id + ')" title="Delete">&#10005;</button>';
-    html += '</div>';
-    html += '</div>';
-    html += '</div>';
+    html += '</div></div></div>';
   }
   box.innerHTML = html;
 }
 
 function copySaved(name, total, meta, date) {
   var text = 'PROJECT SCOPE QUOTE\n--------------------------------\n';
-  text += 'Project: ' + name + '\n';
-  text += 'Date:    ' + date + '\n';
-  text += 'Pricing: ' + meta + '\n';
-  text += '\nPROJECT TOTAL: ' + total + '\n';
-  text += '\nGenerated with Project Scope Calculator — Freelancer Toolkit';
+  text += 'Project: ' + name + '\nDate:    ' + date + '\nPricing: ' + meta + '\n\nPROJECT TOTAL: ' + total + '\n\nGenerated with FreelanceKit — Project Scope Calculator';
   navigator.clipboard.writeText(text)
     .then(function() { showToast('Quote copied!'); })
     .catch(function() { showToast('Could not copy — try again'); });
@@ -1069,8 +682,7 @@ function deleteQuote(id) {
 
 function showToast(msg) {
   var el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
+  el.textContent = msg; el.classList.add('show');
   setTimeout(function() { el.classList.remove('show'); }, 2600);
 }
 
